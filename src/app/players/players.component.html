@@ -1,0 +1,7 @@
+<div class="player-list">
+  <div *ngFor="let player of players; let i = index">
+    <span class="number">#{{i + 1}}</span>
+    <span class="name">{{ player | titlecase }}</span>
+    <span class="action-btn" (click)="deletePlayer(i)">X</span>
+  </div>
+</div>

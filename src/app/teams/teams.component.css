@@ -1,0 +1,21 @@
+.team-list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
+}
+
+.team-list > div {
+  background-color: rgb(228, 228, 228);
+  padding: 5px;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+.team-list > div > div {
+  margin: 2px;
+}
+
+.blue {
+  color: rgb(0, 89, 255);
+}
