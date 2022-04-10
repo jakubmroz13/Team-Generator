@@ -10,11 +10,12 @@ export class AppComponent {
   showTeamsBtn = '';
   showPlayers = true;
   newPlayerName = '';
-  players: string[] = [];
+  players: Player[] = [];
   numberOfTeams: number | '' = '';
-  teams: string[][] = [];
+  teams: Player[][] = [];
   playerErrorMessage: string = '';
   teamsErrorMessage: string = '';
+  powerRating = 4;
 
   setShowPlayers(value: boolean) {
     this.showPlayers = value;
@@ -26,13 +27,21 @@ export class AppComponent {
     this.newPlayerName = newPlayerNameInput;
   }
 
+  onPowerRatingInput(powerRatingInput: string) {
+    this.powerRating = Number(powerRatingInput);
+  }
+
   addPlayer() {
     if (!this.newPlayerName) {
       this.playerErrorMessage = "Can't add player without a name";
       return;
     }
     this.playerErrorMessage = '';
-    this.players.push(this.newPlayerName);
+    const newPlayer: Player = {
+      name: this.newPlayerName,
+      power: this.powerRating,
+    };
+    this.players.push(newPlayer);
     this.newPlayerName = '';
   }
 
@@ -42,24 +51,44 @@ export class AppComponent {
 
   generateTeams() {
     this.teams = [];
-    if(this.numberOfTeams <= 0 || this.numberOfTeams === '') {
-      this.teamsErrorMessage = "Number of teams must be positive";
+    if (this.numberOfTeams <= 0 || this.numberOfTeams === '') {
+      this.teamsErrorMessage = "Number of teams must be a positive number";
       return;
     }
-    if(this.numberOfTeams > this.players.length) {
-      this.teamsErrorMessage = "To few players";
+    if (this.numberOfTeams > this.players.length) {
+      this.teamsErrorMessage = "Too few players";
       return;
     }
     this.teamsErrorMessage = '';
-    const playerArr = [...this.players];
-    while (playerArr.length) {
-      for (let i = 0; i < this.numberOfTeams; i++) {
-        if (!playerArr.length) break;
-        const random = Math.floor(Math.random() * playerArr.length);
-        if (this.teams[i]) {
-          this.teams[i].push(playerArr.splice(random, 1)[0]);
+
+    const playerArr: string[][] = [[], [], [], [], []];
+
+    this.players.map(({ name, power }) => {
+      playerArr[power].push(name);
+    });
+    let addToJ = 1;
+    let j = 0;
+    for (let i = 4; i >= 0; i--) {
+      while (playerArr[i].length) {
+        const random = Math.floor(Math.random() * playerArr[i].length);
+        const player = {
+          name: playerArr[i].splice(random, 1)[0],
+          power: i,
+        };
+        if (this.teams[j]) {
+          this.teams[j].push(player);
         } else {
-          this.teams[i] = [playerArr.splice(random, 1)[0]];
+          this.teams[j] = [player];
+        }
+
+        j += addToJ;
+
+        if(j === this.numberOfTeams) {
+          j = this.numberOfTeams - 1;
+          addToJ = -1;
+        } else if(j === -1) {
+          j = 0;
+          addToJ = 1;
         }
       }
     }
@@ -68,4 +97,9 @@ export class AppComponent {
   deletePlayer(index: number) {
     this.players.splice(index, 1);
   }
+}
+
+interface Player {
+  name: string;
+  power: number;
 }

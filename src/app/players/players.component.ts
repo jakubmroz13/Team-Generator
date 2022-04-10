@@ -7,7 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class PlayersComponent implements OnInit {
 
-  @Input() players: string[] = [];
+  @Input() players: Player[] = [];
   @Output() deletePlayerEvent = new EventEmitter<number>();
 
   deletePlayer(index: number) {
@@ -19,4 +19,9 @@ export class PlayersComponent implements OnInit {
   ngOnInit(): void {
   }
 
+}
+
+interface Player {
+  name: string;
+  power: number;
 }

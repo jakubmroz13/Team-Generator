@@ -7,11 +7,15 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TeamsComponent implements OnInit {
 
-  @Input() teams: string[][] = [];
+  @Input() teams: Player[][] = [];
 
   constructor() { }
 
   ngOnInit(): void {
   }
+}
 
+interface Player {
+  name: string;
+  power: number;
 }

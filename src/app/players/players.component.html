@@ -1,7 +1,12 @@
-<div class="player-list">
-  <div *ngFor="let player of players; let i = index">
-    <span class="number">#{{i + 1}}</span>
-    <span class="name">{{ player | titlecase }}</span>
-    <span class="action-btn" (click)="deletePlayer(i)">X</span>
+<div class="player-list-wrapper">
+  <div 
+  *ngIf="!players.length" 
+  style="text-align: center; color: grey;"
+  >No data to show</div>
+  <div class="player-list" *ngFor="let player of players; let i = index">
+    <span>#{{i + 1}}</span>
+    <span>{{ player.name | titlecase }}</span>
+    <span>{{ player.power + 1 }}</span>
+    <span (click)="deletePlayer(i)">X</span>
   </div>
 </div>

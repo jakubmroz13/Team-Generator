@@ -1,19 +1,39 @@
-.team-list {
+.team-list-wrapper {
   width: 100%;
+  height: 81vh;
+  overflow: scroll;
+}
+
+.team-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  grid-auto-rows: min-content;
   text-align: center;
 }
 
 .team-list > div {
   background-color: rgb(228, 228, 228);
-  padding: 5px;
+  padding: 10px;
   margin: 5px;
   border-radius: 10px;
 }
 
-.team-list > div > div {
-  margin: 2px;
+.player {
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+  border-bottom: 1px solid grey;
+}
+
+h4 {
+  background-color: white;
+  margin: 4px 2px 4px 2px;
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.player > span{
+  margin: 3px;
+  padding: 3px;
 }
 
 .blue {

@@ -1,5 +1,18 @@
 .container {
   width: min(100vw, 500px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+header {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  height: 6vh;
+  background-color: rgb(0, 89, 255);
+  color: white
 }
 
 nav {
@@ -9,11 +22,15 @@ nav {
   height: 5vh;
 }
 
+nav > span {
+  cursor: pointer;
+}
+
 .underline {
   position: relative;
 }
 
-.underline:after {
+.underline:after{
   content: '';
   position: absolute;
   width: 100%;
@@ -24,7 +41,7 @@ nav {
 
 .data-source-wrapper {
   margin-top: 5px;
-  height: 10vh;
+  height: 8vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -38,31 +55,46 @@ nav {
 }
 
 input {
-  font-size: 1rem;
+  font-size: 1.2rem;
   border: none;
   outline: none;
   text-align: center;
   height: 100%;
-  width: 85%;
+  width: 100%;
   border-radius: 5px;
   margin-left: 5px;
-  background-color: rgb(214, 214, 214);
+  background-color: rgb(228, 228, 228);
+}
+
+select {
+  text-align: center;
+  border: none;
+  width: 15%;
+  font-size: 1.2rem;
+  height: 100%;
+  border-radius: 5px;
+  margin-left: 5px;
+  background-color: rgb(228, 228, 228);
+}
+
+.add-btn {
+  font-size: 2rem;
 }
 
 button {
-  font-size: 1rem;
+  font-size: 1.2rem;
   margin: 0 5px 0 5px;
   border: none;
   height: 100%;
   width: 15%;
   border-radius: 5px;
   background-color: rgb(0, 89, 255);
-  color: white
+  color: white;
 }
 
 .error-message {
   color: red;
   font-size: .75rem;
-  text-align: center;
-  width: 85%;
+  text-align: left;
+  margin-left: 10px;
 }

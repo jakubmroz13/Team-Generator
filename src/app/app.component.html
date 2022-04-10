@@ -1,3 +1,8 @@
+<header>
+  <h2>Team <span 
+    style="color: rgb(0, 89, 255); background-color: white; padding: 0 2px 0 2px; border-radius: 5px;"
+    >Generator</span></h2>
+</header>
 <div class="container">
   <nav>
     <span (click)="setShowPlayers(true)" [ngClass]="showPlayersBtn">Players</span>
@@ -14,7 +19,16 @@
           placeholder="Name"
           [value]="newPlayerName"
         >
-        <button (click)="addPlayer()">+</button>
+        <select #powerRatingInput
+          [value]="powerRating"
+          (change)="onPowerRatingInput(powerRatingInput.value)">
+          <option value="4">5</option>
+          <option value="3">4</option>
+          <option value="2">3</option>
+          <option value="1">2</option>
+          <option value="0">1</option>
+        </select>
+        <button class="add-btn" (click)="addPlayer()">+</button>
       </div>
       <div 
         class="error-message"
@@ -25,7 +39,6 @@
       [players]="players"
       (deletePlayerEvent)="deletePlayer($event)"
     ></app-players>
-
   </div>
 
   <div *ngIf="!showPlayers">
